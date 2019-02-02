@@ -12,7 +12,8 @@ read fn
 echo "commit massage"
 read say
 
-sleep 3
+sleep 9
+
 
 git add $fn
 

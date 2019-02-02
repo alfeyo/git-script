@@ -8,12 +8,14 @@
 echo "Fill what you want to add"
 read fn
 sleep 3
-git add $fn
-
-git status
 
 echo "commit massage"
 
 read say
+
+git add $fn
+
+git status
+
 
 git commit -m "$say"

@@ -20,6 +20,6 @@ git add $fn
 
 git commit -m "$say"
 
+watch git status
 
-
-notify-send "life made ezay"
+notify-send "$watch"

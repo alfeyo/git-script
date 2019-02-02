@@ -13,9 +13,13 @@ echo "commit massage"
 read say
 
 #set wait for 9 seconds before commit
-sleep 9
+#sleep 9
 
 
 git add $fn
 
 git commit -m "$say"
+
+
+
+notify-send "life made ezay"

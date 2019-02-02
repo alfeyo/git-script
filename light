@@ -1,0 +1,25 @@
+#!/bin/bash
+    #!/bin/bash
+    # Ask the user for login details
+
+   git status
+
+
+echo "what do you want to add"
+read fn
+
+
+echo "commit massage"
+read say
+
+#set wait for 9 seconds before commit
+sleep 9
+
+
+git add $fn
+
+git commit -m "$say"
+
+watch git status
+
+notify-send "$watch"

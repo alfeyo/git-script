@@ -1,6 +1,6 @@
-#!/bin/bash
-    #!/bin/bash
-    # Ask the user for login details
+#!/bin/sh
+
+ # Ask the user for login details
 
 git status
 
@@ -10,8 +10,8 @@ read fn
 echo "commit massage"
 read say
 
-echo set wait for 9 seconds before commit
-  sleep 9
+echo set wait for 3 seconds before commit
+  sleep 3
 
 git add $fn
 

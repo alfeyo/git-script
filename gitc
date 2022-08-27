@@ -4,10 +4,10 @@
 
 git status
 
-echo "what do you want to add"
+echo "What files would you like to add"
 read fn
 
-echo "commit massage"
+echo "Enter your commit message"
 read say
 
 echo set wait for 3 seconds before commit

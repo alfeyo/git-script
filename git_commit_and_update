@@ -4,19 +4,18 @@
 
 git status
 
-echo "what do you want to add"
-read fn
+echo "What files would you like to add"
+read addFiles
 
-echo "commit massage"
-read say
+echo "Enter your commit message"
+read commitMessage
 
 echo set wait for 3 seconds before commit
   sleep 3
 
-git add $fn
+git add $addFiles
 
-git commit -m "$say"
-
+git commit -m "$commitMessage"
 
 #notify-send "-i <icon> <Message>"
 notify-send -i face-wink "Dont Forget To Push"

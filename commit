@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Get the current branch
+currentBranch=$(git rev-parse --abbrev-ref HEAD)
+echo "You are on branch: $currentBranch"
+
+# Check for uncommitted changes
+if ! git diff-index --quiet HEAD --; then
+  echo "You have uncommitted changes. Stashing them temporarily..."
+  git stash
+fi
+
+# Show git status
+git status
+
+# Prompt user for files
+echo "Enter files to add (or '.' for all):"
+read addFiles
+if [ -z "$addFiles" ]; then
+  echo "No files specified. Exiting..."
+  exit 1
+fi
+
+# Prompt for commit message
+defaultCommitMessage="Update"
+echo "Enter commit message (Press Enter for default: '$defaultCommitMessage'):"
+read commitMessage
+commitMessage=${commitMessage:-$defaultCommitMessage}
+
+# Wait before committing
+echo "Waiting 3 seconds before committing..."
+sleep 3
+
+# Add and commit changes
+git add "$addFiles"
+git commit -m "$commitMessage"
+
+# Log the commit
+echo "$(date): $commitMessage" >> commit_history.log
+
+# Notify the user
+notify_user() {
+  case "$(uname)" in
+    Linux) notify-send -i face-wink "Don't Forget To Push" ;;
+    Darwin) osascript -e 'display notification "Don'\''t Forget To Push" with title "Git Reminder"' ;;
+    CYGWIN*|MINGW32*|MSYS*|MINGW*) powershell.exe -Command '[System.Windows.Forms.MessageBox]::Show("Don'\''t Forget To Push", "Git Reminder")' ;;
+    *) echo "Reminder: Don't forget to push your changes!" ;;
+  esac
+}
+notify_user
+
+# Ask if the user wants to push
+echo "Would you like to push now? (y/n)"
+read pushResponse
+if [ "$pushResponse" = "y" ]; then
+  git push
+  echo "Changes pushed successfully!"
+else
+  echo "Remember to push your changes later."
+fi
+
+echo "Commit completed!"
